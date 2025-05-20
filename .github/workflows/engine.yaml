@@ -1,0 +1,22 @@
+name: Engine
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+defaults:
+  run:
+    working-directory: backend/engine
+
+jobs:
+    build:
+        runs-on: ubuntu-24.04
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-go@v5
+            - name: Install dependencies
+              run: go mod download
+            - name: Build project
+              run: go build -ldflags "-s -w" -o engine .
