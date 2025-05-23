@@ -1,4 +1,4 @@
-module github.com/nadmax/open-cbe-search
+module github.com/nadmax/open-cbe-search/core
 
 go 1.24.2
 

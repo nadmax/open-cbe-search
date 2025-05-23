@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-const bulkSize = 2000
+const bulkSize = 5000
 
 func BulkInsertCSV(db *sql.DB, filePath, tableName string) error {
 	file, err := os.Open(filePath)
@@ -78,7 +78,8 @@ func BulkInsertCSV(db *sql.DB, filePath, tableName string) error {
 		}
 	}
 
-	fmt.Printf("Finished inserting %d records into table '%s'\n", total, tableName)
+	fmt.Printf("Finished inserting %d records into table '%s'\n", total, tableName)	
+
 	return nil
 }
 

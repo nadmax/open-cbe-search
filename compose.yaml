@@ -1,10 +1,21 @@
 services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: ./cmd/api/Dockerfile
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - engine
+    ports:
+      - "8080:8080"
+
   engine:
     build:
-      context: ./backend/engine
-      dockerfile: Dockerfile
+      context: ./backend
+      dockerfile: ./engine/Dockerfile
     env_file:
-      - ./backend/engine/.env
+      - ./backend/.env
     depends_on:
       postgres:
         condition: service_healthy
@@ -21,7 +32,7 @@ services:
       timeout: 5s
       retries: 5
     env_file:
-      - ./backend/engine/.env
+      - ./backend/.env
     volumes:
       - ./backend/engine/postgres/db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - pg-data:/var/lib/postgresql/data

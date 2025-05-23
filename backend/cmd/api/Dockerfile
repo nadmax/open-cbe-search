@@ -3,10 +3,10 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY ./ ./
-WORKDIR /app/engine
-RUN go build -ldflags "-s -w" -o /app/engine
+WORKDIR /app/cmd/api
+RUN go build -ldflags "-s -w" -o /app/api
 
 FROM alpine:3.21.3
 WORKDIR /app
-COPY --from=builder /app/engine ./
-ENTRYPOINT ["/app/engine"]
+COPY --from=builder /app/api ./
+ENTRYPOINT ["/app/api"]
