@@ -1,6 +1,6 @@
 # open-cbe-search
 
-**open-cbe-search** is a Belgian enterprise search engine powered by **Elasticsearch**, written in **Go**, and designed to ingest and index large-scale datasets from CSV files.  
+**open-cbe-search** is a Belgian enterprise search engine written in **Go**, and designed to ingest and index large-scale datasets from CSV files.  
 It provides fast, scalable, and full-text search capabilities over structured Belgian company data.
 
 ## 📦 Requirements
