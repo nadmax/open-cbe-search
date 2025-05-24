@@ -1,4 +1,13 @@
 services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    depends_on:
+      - api
+    ports:
+      - 5000:5000
+
   api:
     build:
       context: ./backend
@@ -8,7 +17,7 @@ services:
     depends_on:
       - engine
     ports:
-      - "8080:8080"
+      - 8080:8080
 
   engine:
     build:
@@ -25,7 +34,7 @@ services:
   postgres:
     image: postgres:17.5-alpine
     ports:
-      - "5432:5432"
+      - 5432:5432
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
